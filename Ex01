@@ -1,0 +1,18 @@
+import numpy as np
+from tensorflow.keras import backend as K
+
+a = K.placeholder(shape=(5,))
+b = K.placeholder(shape=(5,))
+c = K.placeholder(shape=(5,))
+
+a_sq = a**2
+b_sq = b**2
+c_sq = c**2
+mul_function = 2*b*c
+
+add_inputs = a_sq + b_sq + c_sq + mul_function
+
+add_function = K.function(inputs=[a, b, c],
+                          outputs=(add_inputs,))
+
+print( add_function((np.array([[1],[2],[3],[4],[5]]),np.array([[1],[2],[3],[4],[5]]),np.array([[1],[2],[3],[4],[5]]))))
