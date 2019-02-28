@@ -1,0 +1,31 @@
+import numpy as np
+from tensorflow.keras import backend as K
+
+x = K.placeholder(shape=()) #scalar placeholder
+
+tanh_of_input = 1-2/(K.exp(2*x)+1)
+
+tanh_functions = K.function(inputs=(x),
+                           outputs = (tanh_of_input))
+
+
+
+derivative_tanh = K.gradients( loss=tanh_of_input, variables=[x])
+
+grad_functions = K.function(inputs=[x], outputs=(derivative_tanh))
+
+print(grad_functions(2))
+print(tanh_functions(2))
+print(grad_functions(-100))
+print(tanh_functions(-100))
+print(grad_functions(-1))
+print(tanh_functions(-1))
+print(grad_functions(0))
+print(tanh_functions(0))
+print(grad_functions(1))
+print(tanh_functions(1))
+print(grad_functions(100))
+print(tanh_functions(100))
+
+
+
