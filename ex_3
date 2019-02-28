@@ -1,0 +1,13 @@
+# exercise 3
+
+w = K.placeholder(shape=(2,))
+b = K.placeholder(shape=(1,))
+x1 = K.placeholder(shape=(2,))
+y = w[0] * x1[0] + w[1] * x1[1] + b[0]
+
+f = 1 / (1 + K.exp(-y))
+
+grad_12_tensor = K.gradients(loss = f, variables = [w])
+grad_func = K.function(inputs = [w,b,x1], outputs = grad_12_tensor[0])
+
+print(grad_func((np.arange(2,4), np.arange(3,4), np.arange(5,7))))
