@@ -12,6 +12,7 @@ The Model should be able to distinguish:
 3-4. Week: 
 Refine the model with different learning algorithms.
 Try to read first numbers and signs from images captured with the Rasberry Pi camera.( As seen in session 5)
+Draw contours to the picture captured, crop it and resize it. 
 Implement a simple calculator.
 Do first simple calculations. For example 5 + 1 = ...
 
