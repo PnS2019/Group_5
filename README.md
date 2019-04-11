@@ -1,6 +1,6 @@
-# Project Title
+# Calculator on Rasberry Pi using PiCam & handwritten tasks
 
-One Paragraph of project description goes here
+This is a project being done in the "Deep Learning on Raberry Pi" class, offered by ETH Zurich and UZH. It's a calculator, installed on Rasberry Pi and using state of the art Deep Learning and Computer Vision techniques to recognize handwritten calculations, computing them and finally output the result through a built-in speaker.
 
 ## Getting Started
 
@@ -11,7 +11,10 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Give examples
+numpy
+tensorflow
+pnslib
+etc
 ```
 
 ### Installing
@@ -54,35 +57,33 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Use terminal
+```
+python3 whateveryouwanttorun.py
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Tensorflow](https://www.tensorflow.org) - Deep Learning ecosystem used
+* [Keras](https://keras.io) - API
+* [Python](https://www.python.org) - The almighty language
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Roman Flepp** - *Computer Vision*
+* **Emil Funke** - *Pause machen*
+* **Luc von Niederhäusern** - *Backend*
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the ETH License
 
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
 * Inspiration
-* etc
+* TA's helped a bunch for sure
 
