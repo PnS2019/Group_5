@@ -72,7 +72,7 @@ python3 whateveryouwanttorun.py
 ## Authors
 
 * **Roman Flepp** - *Computer Vision*
-* **Emil Funke** - *Pause machen*
+* **Emil Funke** - *Data Management*
 * **Luc von Niederhäusern** - *Backend*
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
