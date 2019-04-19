@@ -1,0 +1,90 @@
+from __future__ import print_function, absolute_import
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPooling2D, Flatten
+from tensorflow.keras.models import Model
+from tensorflow.keras.utils import to_categorical
+import cv2
+import imutils
+import keras
+from keras.models import load_model
+from keras.utils import CustomObjectScope
+from keras.initializers import glorot_uniform
+from pnslib import utils
+from PIL import Image, ImageDraw, ImageEnhance
+from scipy.misc import imsave
+import numpy
+
+#at first import desired image and convert it to a black and white
+imagetobw = Image.open("testpicture.jpg")
+thresh = 100                                #has to be choosen wisely
+fn = lambda x : 255 if x > thresh else 0
+bwimage = imagetobw.convert('L').point(fn, mode = '1')
+bwimage.save("hallo.jpg")
+bwimage2 = cv2.imread("hallo.jpg", cv2.COLOR_BGR2GRAY)  #if we use the bwimage without reimporting it, it's an object of a class from the Pillow extension
+
+#basic commands to show picture
+cv2.imshow("im3",bwimage2)
+cv2.waitKey(0)
+cv2.destroyWindow("im3")
+
+image = cv2.imread("testpicture.jpg")
+b
+#image rescalling, greyscale and edgemap and reducing noise with gaussian blur
+image2 = imutils.resize(image,height=500)
+gray = cv2.cvtColor(image2, cv2.COLOR_BGR2GRAY)
+blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+edged = cv2.Canny(blurred, 50, 200, 255)
+
+#thresholds the picture
+thresh = cv2.threshold(edged, 0, 255,cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+
+#invert image to find contours
+imagem = cv2.bitwise_not(thresh)
+
+#gives back the contours
+cnts = cv2.findContours(imagem, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+contours = cnts[0][0]
+
+#draws a rectangle around the number
+x,y,w,h = cv2.boundingRect(contours)
+
+im2 = cv2.rectangle(imagem, (x,y) , (x+w,y+h) ,(0,255,0),2)
+im3 = cv2.rectangle(image, (x,y) , (x+w,y+h) ,(0,255,0),2)
+cv2.imshow("im3",im3)
+cv2.waitKey(0)
+cv2.destroyWindow("im3")
+
+#cropping to quadratic window with sidelength h if it's a number ( since there the height ist bigger than width) and w otherwise
+
+vers1 = int((h-w)/2)
+print(vers1)
+if h > w:
+    crop_img = bwimage2[y:y+h, x-vers1:x+h-vers1]
+else:
+    crop_img = bwimage2[y-vers1:y+w-vers1, x:x+w]
+
+#now resize it
+resimage = cv2.resize(crop_img,(45,45), interpolation = cv2.INTER_CUBIC)
+
+newimage1 = np.expand_dims(resimage,axis = 2)
+newimage2 = np.expand_dims(newimage1,axis = 0)
+
+print(newimage1.shape)
+
+#load trained model
+with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
+    model = load_model('numbers_trained.hdf5')
+
+#models.predict takes 4 dim array with 10 images
+#prediction = model.predict(newimage2)
+preds = np.argmax(model.predict(newimage2), axis=1).astype(np.int)
+labels = ["0=", "-", "+", "0", "1", "2","3","4","5","6","3","8","9","div","times"]
+print("It should be a: ")
+print( labels[preds[0]])
+
+cv2.imshow("im3",im3)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
