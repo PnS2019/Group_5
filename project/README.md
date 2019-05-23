@@ -56,10 +56,12 @@ Give an example
 ```
 
 ## Deployment
+change the datapaths in main.py fitting to the machine you're operating on
 
-Use terminal
+Use terminal go to the location of the main.py file
 ```
-python3 whateveryouwanttorun.py
+cd "to the main.py file"
+python3 main.py
 ```
 
 ## Built With
