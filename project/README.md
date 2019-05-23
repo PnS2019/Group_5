@@ -21,6 +21,7 @@ python 3
 
 To install the requireded libraries just follow the instructions on the website to the PnS website
 * [PnS Website](https://pns2019.github.io/python-sc.html)
+
 There is a step by step tutorial on how to install numpy, tensorflow, python 3 and the pnslib on the desired machine both for Linux and Mac.
 
 
@@ -29,6 +30,7 @@ Download the trainedmodel.hdf5 file to your machine
 
 If you want to train the model by yourself download the dataset that we used here:
 * [datatset](https://www.kaggle.com/xainano/handwrittenmathsymbols)
+
 After that create individual folders on your machine with the desired digits and signs to train the model and change the datatpaths in modeltraining.py to your specific terms
 Use the terminal and run modeltraining.py
 ```
