@@ -1,8 +1,0 @@
-        if h > w:
-            vers1 = int((h - w) / 2)
-            newh = int( 0.2*h)
-            crop_img = bwimage2[y - newh:y + h+ newh, x - vers1-newh:x + h - vers1+newh]
-        else:
-            vers2 = int((w - h) / 2)
-            neww = int(0.2*w)
-            crop_img = bwimage2[y - vers2-neww:y + w - vers2+neww, x-neww:x + w + neww]
